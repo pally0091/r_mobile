@@ -1,9 +1,24 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
+import Main from "./Components/Main";
+import Home from "./Components/Home";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Main></Main>,
+      children: [
+        {
+          path: "/",
+          element: <Home></Home>,
+        },
+      ],
+    },
+  ]);
   return (
     <>
-      <h1 className="text-4xl text-center">R Mobile</h1>
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }
