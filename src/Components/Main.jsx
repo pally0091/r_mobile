@@ -6,7 +6,9 @@ import { Outlet } from "react-router-dom";
 const Main = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      <div className="w-full sticky top-0">
+        <Navbar></Navbar>
+      </div>
       <Outlet></Outlet>
     </div>
   );
