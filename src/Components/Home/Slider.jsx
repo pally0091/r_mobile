@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import Banner from "./Banner";
 
-const Home = () => {
+const Slider = () => {
   return (
     <div>
-      <Banner></Banner>
+      <h1>slider</h1>
     </div>
   );
 };
 
-export default Home;
+export default Slider;
