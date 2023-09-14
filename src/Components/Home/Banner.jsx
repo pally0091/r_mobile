@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import Slider from "./Slider";
+import card2 from "../../assets/card 2.png";
+import card1 from "../../assets/card 1.png";
 
 const Banner = () => {
   return (
@@ -9,11 +11,19 @@ const Banner = () => {
         <Slider></Slider>
       </div>
       <div className="w-2/6 hidden md:block lg:block">
-        <div>
-          <p>card1</p>
+        <div className="w-full">
+          <img
+            className="w-full"
+            src={card1}
+            alt=""
+          />
         </div>
-        <div>
-          <p>card2</p>
+        <div className="w-full">
+          <img
+            className="w-full"
+            src={card2}
+            alt=""
+          />
         </div>
       </div>
     </div>
