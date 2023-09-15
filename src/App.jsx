@@ -24,18 +24,34 @@ function App() {
             {
               path: "/phones",
               element: <Iphone></Iphone>,
+              loader: () =>
+                fetch(
+                  "https://openapi.programming-hero.com/api/phones?search=iphone"
+                ),
             },
             {
               path: "/phones/iphone",
               element: <Iphone></Iphone>,
+              loader: () =>
+                fetch(
+                  "https://openapi.programming-hero.com/api/phones?search=iphone"
+                ),
             },
             {
               path: "/phones/samsung",
               element: <Samsung></Samsung>,
+              loader: () =>
+                fetch(
+                  "https://openapi.programming-hero.com/api/phones?search=samsung"
+                ),
             },
             {
               path: "/phones/oppo",
               element: <Oppo></Oppo>,
+              loader: () =>
+                fetch(
+                  "https://openapi.programming-hero.com/api/phones?search=oppo"
+                ),
             },
           ],
         },
