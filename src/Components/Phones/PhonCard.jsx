@@ -5,6 +5,7 @@ const PhonCard = () => {
   return (
     <div>
       <p>Phone Card</p>
+      <p>1</p>
     </div>
   );
 };
