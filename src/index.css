@@ -13,3 +13,9 @@ body {
 a.active {
   background-color: aquamarine;
 }
+#slider {
+  background-image: url(./assets/ban.jpg);
+  /* background-position: cover; */
+  background-repeat: no-repeat;
+  background-size: cover;
+}

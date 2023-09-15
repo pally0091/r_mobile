@@ -36,7 +36,10 @@ const Slider = () => {
         </p>
       </div>
       {/* slider  */}
-      <div className="simple-carousel h-72 md:h-60 lg:h-96 mt-10">
+      <div
+        id="slider"
+        className="simple-carousel h-72 md:h-60 lg:h-96 mt-10"
+      >
         {slides.map((slide, index) => (
           <div
             key={index}
