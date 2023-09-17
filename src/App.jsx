@@ -6,6 +6,7 @@ import AllPhones from "./Components/Phones/AllPhones";
 import Iphone from "./Components/Phones/Iphone";
 import Samsung from "./Components/Phones/Samsung";
 import Oppo from "./Components/Phones/Oppo";
+import PhoneDetail from "./Components/Phones/PhoneDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -54,6 +55,14 @@ function App() {
                 ),
             },
           ],
+        },
+        {
+          path: "/:id",
+          element: <PhoneDetail></PhoneDetail>,
+          loader: ({ params }) =>
+            fetch(
+              `https://openapi.programming-hero.com/api/phone/${params.id}`
+            ),
         },
       ],
     },

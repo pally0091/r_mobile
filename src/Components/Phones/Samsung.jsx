@@ -6,7 +6,7 @@ import PhoneCard from "./PhonCard";
 const Samsung = () => {
   const data = useLoaderData();
   const sams = data.data;
-  console.log(sams);
+  // console.log(sams);
   return (
     <div className="text-center">
       <p className="my-5 font-bold italic">
