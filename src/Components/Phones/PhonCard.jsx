@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const PhonCard = ({ phone }) => {
   const { brand, phone_name, slug, image } = phone;
   return (
-    <div className="h-64 rounded-xl relative">
+    <div className="h-64 rounded-xl relative  hover:-mt-2 transition-all duration-500">
       <img
         className="w-full h-full rounded-xl"
         src={image}
