@@ -19,3 +19,13 @@ a.active {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.card:hover .card-info {
+  bottom: 0;
+  transition: all;
+  transition-duration: 0.5s;
+}
+.card:hover img {
+  scale: 0.9;
+  transition: all;
+  transition-duration: 0.5s;
+}
