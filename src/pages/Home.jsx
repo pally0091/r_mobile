@@ -1,4 +1,5 @@
 import { motion as M } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const featuredPhones = [
   {
@@ -65,12 +66,12 @@ const Home = () => {
             shoppers and reviewers.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <a
-              href="/phones"
+            <Link
+              to="/phones"
               className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-700"
             >
               View all phones
-            </a>
+            </Link>
             <a
               href="/compare"
               className="inline-flex items-center justify-center rounded-lg border border-indigo-200 bg-white px-5 py-3 text-sm font-semibold text-indigo-700 hover:bg-indigo-50"
@@ -115,12 +116,12 @@ const Home = () => {
                 </div>
                 <span className="text-xs text-slate-500">{phone.rating}</span>
               </div>
-              <a
+              <Link
                 className="mt-5 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
-                href={`/phones/${phone.slug}`}
+                to={`/phones/${phone.slug}`}
               >
                 Explore details
-              </a>
+              </Link>
             </M.article>
           ))}
         </section>

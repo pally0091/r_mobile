@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion as M, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const brands = [
   { id: "apple", name: "Apple", icon: "" },
@@ -118,12 +119,12 @@ const Phones = () => {
                         {phone.brand}
                       </p>
                       <div className="mt-6">
-                        <a
-                          href={`/phones/${phone.slug}`}
+                        <Link
+                          to={`/phones/${phone.slug}`}
                           className="flex items-center justify-center w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white transition-all duration-300 hover:bg-indigo-600 group-hover:shadow-lg group-hover:shadow-indigo-600/20"
                         >
                           View Details
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </M.article>

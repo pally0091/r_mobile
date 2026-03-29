@@ -37,10 +37,18 @@ function App() {
         {
           path: "/phones/:slug",
           element: <PhoneDetail />,
-          loader: ({ params }) =>
-            fetch(
-              `https://openapi.programming-hero.com/api/phone/${params.slug}`,
-            ).catch(() => ({ data: null })),
+          loader: async ({ params }) => {
+            try {
+              const res = await fetch(
+                `https://openapi.programming-hero.com/api/phone/${params.slug}`,
+              );
+              if (!res.ok) throw new Error("Failed to fetch phone details");
+              return await res.json();
+            } catch (error) {
+              console.error("Loader error:", error);
+              return { data: null };
+            }
+          },
           errorElement: <ErrorFallback />,
         },
       ],
