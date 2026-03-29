@@ -45,7 +45,7 @@ const cardAnimation = {
 
 const Home = () => {
   return (
-    <main className="min-h-screen bg-linear-to-b from-slate-50 via-white to-slate-100 py-10">
+    <div className="min-h-screen bg-linear-to-b from-slate-50 via-white to-slate-100 py-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <M.section
           initial={{ opacity: 0, y: -20 }}
@@ -140,7 +140,7 @@ const Home = () => {
           </p>
         </M.section>
       </div>
-    </main>
+    </div>
   );
 };
 

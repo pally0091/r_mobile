@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Layout from "./Layout";
 import Home from "./pages/Home";
+import Phones from "./pages/Phones";
 import PhoneDetail from "./pages/PhoneDetail";
 
 const ErrorFallback = () => (
@@ -28,6 +29,10 @@ function App() {
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/phones",
+          element: <Phones />,
         },
         {
           path: "/phones/:slug",
