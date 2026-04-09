@@ -7,11 +7,18 @@ import PhoneDetail from "./pages/PhoneDetail";
 import ErrorPage from "./pages/ErrorPage";
 
 const ErrorFallback = () => (
-  <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-    <div className="text-center">
-      <h1 className="text-3xl font-bold text-slate-900">Error loading phone</h1>
-      <p className="mt-2 text-slate-600">Please try again or go back home.</p>
-      <a href="/" className="mt-4 inline-block text-indigo-600 hover:underline">
+  <div className="flex min-h-[50vh] items-center justify-center py-16">
+    <div className="glass-surface-strong max-w-md rounded-3xl px-8 py-10 text-center">
+      <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+        Error loading phone
+      </h1>
+      <p className="mt-2 text-slate-600">
+        Please try again or go back home.
+      </p>
+      <a
+        href="/"
+        className="mt-6 inline-flex rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-500/25 transition-colors hover:bg-indigo-700"
+      >
         Return to home
       </a>
     </div>

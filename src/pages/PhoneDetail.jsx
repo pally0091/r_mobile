@@ -16,13 +16,18 @@ const PhoneDetail = () => {
 
   if (!data || !data.data) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="flex min-h-[50vh] items-center justify-center py-16">
         <M.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center p-8 bg-white rounded-2xl shadow-xl border border-slate-100"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="glass-surface-strong rounded-3xl p-10 text-center"
         >
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+          <M.div
+            className="mx-auto mb-5 h-11 w-11 rounded-full border-2 border-indigo-200/80 border-t-indigo-600"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+          />
           <p className="text-lg font-medium text-slate-600">
             Retrieving phone excellence...
           </p>
@@ -35,35 +40,42 @@ const PhoneDetail = () => {
   const { mainFeatures, others, brand, name, releaseDate, image } = phone;
 
   // Animation variants
+  const easeClean = [0.22, 1, 0.36, 1];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 },
+      transition: { staggerChildren: 0.07, delayChildren: 0.04 },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
+    hidden: { y: 16, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.45, ease: easeClean },
+    },
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-50 via-white to-indigo-50/30 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-8 sm:py-12">
+      <div className="mx-auto max-w-6xl sm:px-0">
         {/* Breadcrumb / Back Button */}
         <M.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, ease: easeClean }}
           className="mb-8"
         >
           <Link
             to="/phones"
-            className="group inline-flex items-center text-sm font-semibold text-slate-500 hover:text-indigo-600 transition-colors"
+            className="group glass-chip inline-flex items-center rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:text-indigo-700"
           >
             <ChevronLeft
               size={20}
-              className="mr-2 transform group-hover:-translate-x-1 transition-transform"
+              className="mr-2 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-x-1"
             />
             Back to Collection
           </Link>
@@ -77,15 +89,13 @@ const PhoneDetail = () => {
         >
           {/* Left Column: Image Card */}
           <M.div variants={itemVariants} className="lg:col-span-5">
-            <div className="sticky top-8 bg-white/70 backdrop-blur-xl rounded-3xl border border-white p-8 shadow-2xl shadow-indigo-100/50 flex items-center justify-center overflow-hidden group">
+            <div className="group relative sticky top-28 flex items-center justify-center overflow-hidden rounded-3xl p-8 glass-surface-strong">
               <M.img
-                layoutId={`image-${phone.slug}`}
                 src={image}
                 alt={name}
-                className="max-h-[500px] w-auto object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                className="max-h-[500px] w-auto object-contain drop-shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
               />
-              {/* Decorative gradient overlay */}
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/10 blur-3xl rounded-full"></div>
+              <div className="absolute -z-10 top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-400/15 blur-3xl" />
             </div>
           </M.div>
 
@@ -94,10 +104,10 @@ const PhoneDetail = () => {
             {/* Header Info */}
             <M.section
               variants={itemVariants}
-              className="bg-white/40 backdrop-blur-md p-8 rounded-3xl border border-white/50 shadow-sm"
+              className="glass-surface-strong rounded-3xl p-8"
             >
-              <div className="flex flex-wrap items-center gap-3 mb-4">
-                <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider rounded-full">
+              <div className="mb-4 flex flex-wrap items-center gap-3">
+                <span className="rounded-full border border-indigo-200/70 bg-indigo-50/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-indigo-800 backdrop-blur-sm">
                   {brand}
                 </span>
                 <span className="text-sm text-slate-500 font-medium">
@@ -144,7 +154,7 @@ const PhoneDetail = () => {
               ].map((spec, i) => (
                 <div
                   key={i}
-                  className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+                  className="glass-surface rounded-3xl p-4 transition-shadow duration-300 hover:shadow-md hover:shadow-indigo-500/10"
                 >
                   <div className="text-indigo-600 mb-3">{spec.icon}</div>
                   <p className="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-1">
@@ -161,7 +171,7 @@ const PhoneDetail = () => {
             <M.div variants={itemVariants} className="space-y-6">
               {/* Sensors */}
               {mainFeatures?.sensors && (
-                <div className="bg-white rounded-3xl border border-slate-100 p-6 shadow-sm overflow-hidden relative">
+                <div className="glass-surface relative overflow-hidden rounded-3xl p-6">
                   <div className="absolute top-0 right-0 p-4 opacity-[0.03]">
                     <Activity size={96} />
                   </div>
@@ -175,7 +185,7 @@ const PhoneDetail = () => {
                     {mainFeatures.sensors.map((sensor, idx) => (
                       <span
                         key={idx}
-                        className="px-4 py-2 bg-slate-50 text-slate-600 text-xs font-semibold rounded-2xl border border-slate-100 hover:border-indigo-200 hover:bg-white transition-colors cursor-default capitalize"
+                        className="glass-chip cursor-default rounded-2xl px-4 py-2 text-xs font-semibold capitalize text-slate-700 transition-colors hover:border-indigo-200/80 hover:bg-white/55"
                       >
                         {sensor}
                       </span>
@@ -187,7 +197,7 @@ const PhoneDetail = () => {
               {/* Connectivity Grid */}
               {others && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-3xl border border-slate-100 p-6 shadow-sm">
+                  <div className="glass-surface rounded-3xl p-6">
                     <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center">
                       <span className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mr-3">
                         <Wifi size={16} />
@@ -211,7 +221,7 @@ const PhoneDetail = () => {
                     </dl>
                   </div>
 
-                  <div className="bg-linear-to-br from-indigo-600 to-violet-700 rounded-3xl p-6 shadow-lg text-white flex flex-col justify-between overflow-hidden relative group">
+                  <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-linear-to-br from-indigo-600/92 to-violet-700/92 p-6 text-white shadow-xl shadow-indigo-900/20 backdrop-blur-md group">
                     <div className="relative z-10">
                       <h3 className="text-xl font-bold mb-2 italic">
                         Ultimate Experience
@@ -224,13 +234,14 @@ const PhoneDetail = () => {
                     <M.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="bg-white text-indigo-700 px-6 py-3 rounded-2xl font-bold text-sm shadow-xl hover:shadow-2xl transition-all relative z-10 flex items-center justify-center gap-2"
+                      transition={{ type: "spring", stiffness: 420, damping: 28 }}
+                      className="relative z-10 flex items-center justify-center gap-2 rounded-2xl bg-white/95 px-6 py-3 text-sm font-bold text-indigo-700 shadow-lg shadow-indigo-900/15 ring-1 ring-white/60 backdrop-blur-sm transition-shadow hover:shadow-xl"
                     >
                       <CheckCircle size={18} />
                       Check Availability
                     </M.button>
                     {/* Abstract design elements */}
-                    <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                    <div className="absolute top-0 right-0 -mr-8 -mt-8 h-32 w-32 rounded-full bg-white/15 blur-2xl transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-125" />
                   </div>
                 </div>
               )}

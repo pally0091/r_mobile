@@ -1,94 +1,95 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion as M } from "framer-motion";
 import { NavLink } from "react-router-dom";
 
+const easeClean = [0.22, 1, 0.36, 1];
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [colorIndex, setColorIndex] = useState(0);
-  const gradients = [
-    "linear-gradient(135deg, #2563eb 0%, #14b8a6 50%, #0ea5e9 100%)",
-    "linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f94385 100%)",
-    "linear-gradient(135deg, #4f46e5 0%, #06b6d4 50%, #84cc16 100%)",
-    "linear-gradient(135deg, #f43f5e 0%, #f97316 50%, #facc15 100%)",
+
+  const links = [
+    ["/", "Home"],
+    ["/phones", "Phones"],
+    ["/about", "About"],
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setColorIndex((prev) => (prev + 1) % gradients.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [gradients.length]);
-
-  const currentGradient = gradients[colorIndex];
-
   return (
-    <M.nav
-      initial={{ opacity: 1 }}
-      animate={{
-        opacity: 1,
-        background: currentGradient,
-        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-      }}
-      transition={{
-        duration: 5,
-        ease: "linear",
-        repeat: Infinity,
-        repeatType: "loop",
-      }}
-      className="fixed top-0 left-0 right-0 z-50"
-      style={{
-        background: currentGradient,
-        boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
-      }}
+    <M.header
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, ease: easeClean }}
+      className="fixed top-0 left-0 right-0 z-50 px-4 pt-3 md:px-6 md:pt-4"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
-        <h1 className="text-2xl font-extrabold tracking-tight text-white md:text-4xl">
+      <nav className="glass-nav mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-4 py-2.5 md:rounded-[1.35rem] md:px-5 md:py-3.5">
+        <NavLink
+          to="/"
+          className="text-xl font-extrabold tracking-tight text-slate-800 md:text-2xl"
+          onClick={() => setMenuOpen(false)}
+        >
           R-Mobiles
-        </h1>
+        </NavLink>
 
         <button
-          className="inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-3 py-2 text-white transition hover:bg-white/20 md:hidden"
+          type="button"
+          className="glass-chip inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-white/55 md:hidden"
+          aria-expanded={menuOpen}
           aria-label="Toggle menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <span className="text-lg">☰</span>
-          <span className="text-sm">Menu</span>
+          <span className="text-lg leading-none text-slate-600">☰</span>
+          Menu
         </button>
 
-        <div className="hidden items-center gap-4 md:flex">
-          {[
-            ["/", "Home"],
-            ["/phones", "Phones"],
-            ["/about", "About"],
-          ].map(([path, label]) => (
-            <NavLink
-              key={path}
-              to={path}
-              className={({ isActive }) =>
-                `text-white text-lg border-b-2 border-transparent px-2 py-1 transition-all duration-300 ${
-                  isActive ? "border-white" : "hover:border-white"
-                }`
-              }
-            >
-              {label}
+        <div className="hidden items-center gap-1 md:flex">
+          {links.map(([path, label]) => (
+            <NavLink key={path} to={path} className="relative px-1">
+              {({ isActive }) => (
+                <>
+                  {isActive && (
+                    <M.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-xl bg-white/75 shadow-sm shadow-indigo-500/10 ring-1 ring-white/80"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 32,
+                      }}
+                    />
+                  )}
+                  <span
+                    className={`relative z-10 block rounded-xl px-3 py-2 text-[15px] font-semibold transition-colors ${
+                      isActive
+                        ? "text-indigo-700"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    {label}
+                  </span>
+                </>
+              )}
             </NavLink>
           ))}
         </div>
-      </div>
+      </nav>
 
-      {menuOpen && (
-        <div className="md:hidden border-t border-blue-300/30 bg-sky-950/95 px-4 py-3 backdrop-blur-lg">
-          {[
-            ["/", "Home"],
-            ["/phones", "Phones"],
-            ["/about", "About"],
-          ].map(([path, label]) => (
+      <M.div
+        initial={false}
+        animate={
+          menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }
+        }
+        transition={{ duration: 0.3, ease: easeClean }}
+        className="glass-nav mx-auto mt-2 max-w-6xl overflow-hidden rounded-2xl md:hidden"
+      >
+        <div className="border-t border-white/50 px-2 py-2">
+          {links.map(([path, label]) => (
             <NavLink
               key={`mobile-${path}`}
               to={path}
               className={({ isActive }) =>
-                `block py-2 text-white text-base transition ${
-                  isActive ? "font-bold" : "hover:text-sky-200"
+                `block rounded-xl px-3 py-2.5 text-[15px] font-semibold transition-colors ${
+                  isActive
+                    ? "bg-white/70 text-indigo-700 ring-1 ring-white/80"
+                    : "text-slate-700 hover:bg-white/45"
                 }`
               }
               onClick={() => setMenuOpen(false)}
@@ -97,8 +98,8 @@ const Navbar = () => {
             </NavLink>
           ))}
         </div>
-      )}
-    </M.nav>
+      </M.div>
+    </M.header>
   );
 };
 

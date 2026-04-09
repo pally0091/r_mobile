@@ -1,6 +1,8 @@
 import { motion as M } from "framer-motion";
 import { Link } from "react-router-dom";
 
+const easeClean = [0.22, 1, 0.36, 1];
+
 const featuredPhones = [
   {
     model: "Apple - iPhone 13 Pro Max",
@@ -10,7 +12,8 @@ const featuredPhones = [
     price: "$1099",
     rating: 4.8,
     badge: "Premium",
-    badgeClasses: "bg-amber-100 text-amber-800",
+    badgeClasses:
+      "border-amber-200/80 bg-amber-50/80 text-amber-900 backdrop-blur-sm",
   },
   {
     model: "Oppo - Find X5 Pro",
@@ -20,7 +23,8 @@ const featuredPhones = [
     price: "$999",
     rating: 4.5,
     badge: "Best Value",
-    badgeClasses: "bg-emerald-100 text-emerald-800",
+    badgeClasses:
+      "border-emerald-200/80 bg-emerald-50/80 text-emerald-900 backdrop-blur-sm",
   },
   {
     model: "Samsung - Galaxy S22 5G",
@@ -30,31 +34,31 @@ const featuredPhones = [
     price: "$899",
     rating: 4.6,
     badge: "Favorite",
-    badgeClasses: "bg-cyan-100 text-cyan-800",
+    badgeClasses:
+      "border-cyan-200/80 bg-cyan-50/80 text-cyan-900 backdrop-blur-sm",
   },
 ];
 
 const cardAnimation = {
-  hidden: { opacity: 0, y: 18, scale: 0.97 },
+  hidden: { opacity: 0, y: 14 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: { delay: i * 0.1, duration: 0.35 },
+    transition: { delay: i * 0.06, duration: 0.45, ease: easeClean },
   }),
 };
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-50 via-white to-slate-100 py-10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div className="py-6 sm:py-10">
+      <div className="mx-auto max-w-6xl sm:px-0">
         <M.section
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-12"
+          transition={{ duration: 0.55, ease: easeClean }}
+          className="glass-surface-strong rounded-3xl p-8 sm:p-12"
         >
-          <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+          <span className="inline-flex items-center rounded-full border border-indigo-200/60 bg-indigo-50/70 px-3 py-1 text-xs font-semibold text-indigo-800 backdrop-blur-sm">
             New collection
           </span>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
@@ -68,16 +72,16 @@ const Home = () => {
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
               to="/phones"
-              className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-700"
+              className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:bg-indigo-700 hover:shadow-indigo-500/35"
             >
               View all phones
             </Link>
-            <a
-              href="/compare"
-              className="inline-flex items-center justify-center rounded-lg border border-indigo-200 bg-white px-5 py-3 text-sm font-semibold text-indigo-700 hover:bg-indigo-50"
+            <Link
+              to="/compare"
+              className="glass-chip inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-indigo-800 transition-colors duration-300 hover:bg-white/55"
             >
               Compare models
-            </a>
+            </Link>
           </div>
         </M.section>
 
@@ -88,22 +92,26 @@ const Home = () => {
               custom={index}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.25 }}
               variants={cardAnimation}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              whileHover={{
+                y: -4,
+                transition: { type: "spring", stiffness: 420, damping: 30 },
+              }}
+              className="glass-surface group rounded-2xl p-5 transition-shadow duration-300 hover:shadow-lg hover:shadow-indigo-500/10"
             >
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between gap-3">
                 <h2 className="text-lg font-semibold text-slate-900">
                   {phone.model}
                 </h2>
                 <span
-                  className={`rounded-full px-2 py-1 text-xs font-semibold ${phone.badgeClasses}`}
+                  className={`shrink-0 rounded-full border px-2 py-1 text-xs font-semibold ${phone.badgeClasses}`}
                 >
                   {phone.badge}
                 </span>
               </div>
               <p className="mt-3 text-sm text-slate-600">{phone.tagline}</p>
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-4 flex flex-wrap items-center gap-2">
                 <p className="text-2xl font-bold text-slate-900">
                   {phone.price}
                 </p>
@@ -117,7 +125,7 @@ const Home = () => {
                 <span className="text-xs text-slate-500">{phone.rating}</span>
               </div>
               <Link
-                className="mt-5 inline-block rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                className="mt-5 inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-md shadow-indigo-500/20 transition-colors duration-300 hover:bg-indigo-700"
                 to={`/phones/${phone.slug}`}
               >
                 Explore details
@@ -127,10 +135,11 @@ const Home = () => {
         </section>
 
         <M.section
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm"
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.5, ease: easeClean }}
+          className="glass-surface mt-10 rounded-2xl p-6 text-center sm:p-8"
         >
           <h3 className="text-xl font-semibold text-slate-900">
             Why this page?
