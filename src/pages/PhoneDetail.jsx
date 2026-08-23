@@ -88,12 +88,15 @@ const PhoneDetail = () => {
           className="grid grid-cols-1 lg:grid-cols-12 gap-8"
         >
           {/* Left Column: Image Card */}
-          <M.div variants={itemVariants} className="lg:col-span-5">
-            <div className="group relative sticky top-28 flex items-center justify-center overflow-hidden rounded-3xl p-8 glass-surface-strong">
+          <M.div
+            variants={itemVariants}
+            className="lg:col-span-5"
+          >
+            <div className="group sticky top-28 flex items-center justify-center overflow-hidden rounded-3xl p-8 glass-surface-strong">
               <M.img
                 src={image}
                 alt={name}
-                className="max-h-[500px] w-auto object-contain drop-shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                className="max-h-125 w-auto object-contain drop-shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
               />
               <div className="absolute -z-10 top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-400/15 blur-3xl" />
             </div>
@@ -168,7 +171,10 @@ const PhoneDetail = () => {
             </M.div>
 
             {/* Detailed Info Tabs-like sections */}
-            <M.div variants={itemVariants} className="space-y-6">
+            <M.div
+              variants={itemVariants}
+              className="space-y-6"
+            >
               {/* Sensors */}
               {mainFeatures?.sensors && (
                 <div className="glass-surface relative overflow-hidden rounded-3xl p-6">
@@ -234,7 +240,11 @@ const PhoneDetail = () => {
                     <M.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      transition={{ type: "spring", stiffness: 420, damping: 28 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 420,
+                        damping: 28,
+                      }}
                       className="relative z-10 flex items-center justify-center gap-2 rounded-2xl bg-white/95 px-6 py-3 text-sm font-bold text-indigo-700 shadow-lg shadow-indigo-900/15 ring-1 ring-white/60 backdrop-blur-sm transition-shadow hover:shadow-xl"
                     >
                       <CheckCircle size={18} />

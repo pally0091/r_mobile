@@ -117,7 +117,11 @@ const Phones = () => {
                     }}
                     whileHover={{
                       y: -6,
-                      transition: { type: "spring", stiffness: 380, damping: 26 },
+                      transition: {
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 26,
+                      },
                     }}
                     className="glass-surface group overflow-hidden rounded-3xl"
                   >
@@ -126,7 +130,7 @@ const Phones = () => {
                       <img
                         src={phone.image}
                         alt={phone.phone_name}
-                        className="relative z-[1] max-h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                        className="relative z-1 max-h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                       />
                     </div>
                     <div className="p-6">
