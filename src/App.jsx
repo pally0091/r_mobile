@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Phones from "./pages/Phones";
 import PhoneDetail from "./pages/PhoneDetail";
 import ErrorPage from "./pages/ErrorPage";
+import About from "./pages/About";
 
 const ErrorFallback = () => (
   <div className="flex min-h-[50vh] items-center justify-center py-16">
@@ -12,9 +13,7 @@ const ErrorFallback = () => (
       <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
         Error loading phone
       </h1>
-      <p className="mt-2 text-slate-600">
-        Please try again or go back home.
-      </p>
+      <p className="mt-2 text-slate-600">Please try again or go back home.</p>
       <a
         href="/"
         className="mt-6 inline-flex rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-500/25 transition-colors hover:bg-indigo-700"
@@ -38,6 +37,10 @@ function App() {
         {
           path: "/phones",
           element: <Phones />,
+        },
+        {
+          path: "/about",
+          element: <About />,
         },
         {
           path: "/phones/:slug",
