@@ -15,7 +15,7 @@ const ErrorPage = () => {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 w-full max-w-md"
       >
-        <div className="glass-dark group overflow-hidden rounded-[2.5rem] p-12 text-center shadow-2xl">
+        <div className="glass-dark group overflow-hidden rounded-[2.5rem] p-10 text-center shadow-2xl">
           {/* Subtle light streak */}
           <div className="absolute top-0 -left-full w-full h-full bg-linear-to-r from-transparent via-white/5 to-transparent skew-x-[-45deg] group-hover:left-full transition-all duration-1000 ease-in-out"></div>
 
@@ -30,7 +30,10 @@ const ErrorPage = () => {
             className="relative mb-8 inline-block"
           >
             <div className="absolute inset-0 bg-indigo-500/20 blur-2xl rounded-full scale-150"></div>
-            <Bug size={80} className="text-indigo-400 relative z-10" />
+            <Bug
+              size={80}
+              className="text-indigo-400 relative z-10"
+            />
           </M.div>
 
           <M.h1
@@ -55,41 +58,73 @@ const ErrorPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.4 }}
-            className="mb-10 text-sm leading-relaxed text-slate-400"
+            className="mb-6 text-sm leading-relaxed text-slate-400"
           >
-            The page you're looking for was either moved or never existed in the
-            first place. Let's get you back on track.
+            The page you tried to reach isn’t available. Use the links below to
+            continue exploring the site.
           </M.p>
 
-          <div className="flex flex-col gap-3">
-            <M.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 28 }}
-            >
-              <Link
-                to="/"
-                className="flex items-center justify-center gap-2 rounded-2xl bg-indigo-500/90 px-8 py-4 font-bold text-white shadow-lg shadow-indigo-950/40 ring-1 ring-white/20 backdrop-blur-sm transition-colors hover:bg-indigo-500"
+          <div className="mt-6 flex flex-col gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <M.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
               >
-                <Home size={18} />
-                Return Home
-              </Link>
-            </M.div>
+                <Link
+                  to="/"
+                  className="btn-primary flex items-center justify-center gap-2"
+                >
+                  <Home size={18} />
+                  Return Home
+                </Link>
+              </M.div>
 
-            <M.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 28 }}
-            >
-              <button
-                type="button"
-                onClick={() => window.history.back()}
-                className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/8 px-8 py-4 font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/14"
+              <M.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
               >
-                <ArrowLeft size={18} />
-                Go Back
-              </button>
-            </M.div>
+                <button
+                  type="button"
+                  onClick={() => window.history.back()}
+                  className="flex w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/8 px-6 py-3 font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/14"
+                >
+                  <ArrowLeft size={18} />
+                  Go Back
+                </button>
+              </M.div>
+            </div>
+
+            <div className="mt-3 text-sm text-slate-400">
+              Or try these quick links:
+              <div className="mt-2 flex flex-wrap gap-2 justify-center">
+                <Link
+                  to="/phones"
+                  className="glass-chip px-3 py-1.5 rounded-full text-sm font-semibold text-slate-700"
+                >
+                  Phones
+                </Link>
+                <Link
+                  to="/about"
+                  className="glass-chip px-3 py-1.5 rounded-full text-sm font-semibold text-slate-700"
+                >
+                  About
+                </Link>
+                <Link
+                  to="/phones?search=apple"
+                  className="glass-chip px-3 py-1.5 rounded-full text-sm font-semibold text-slate-700"
+                >
+                  Apple
+                </Link>
+                <a
+                  href="mailto:hello@rmobiles.example"
+                  className="glass-chip px-3 py-1.5 rounded-full text-sm font-semibold text-slate-700"
+                >
+                  Contact Support
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -124,4 +159,3 @@ const ErrorPage = () => {
 };
 
 export default ErrorPage;
-
