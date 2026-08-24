@@ -15,7 +15,9 @@ const Layout = () => {
       </div>
       <Navbar />
       <div className="mx-auto max-w-6xl px-4 pb-16 pt-24 md:pt-28">
-        <Outlet />
+        <div className="page-fade">
+          <Outlet />
+        </div>
       </div>
       <Footer />
     </main>

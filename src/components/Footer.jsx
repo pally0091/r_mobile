@@ -11,7 +11,7 @@ const Footer = () => {
           href="https://frzio.xyz/"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-indigo-600 underline-offset-2 hover:text-indigo-700 hover:underline"
+          className="font-semibold brand-logo underline-offset-2 hover:opacity-95"
         >
           F R Esa
         </a>

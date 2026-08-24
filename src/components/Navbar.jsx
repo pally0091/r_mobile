@@ -23,7 +23,7 @@ const Navbar = () => {
       <nav className="glass-nav mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-4 py-2.5 md:rounded-[1.35rem] md:px-5 md:py-3.5">
         <NavLink
           to="/"
-          className="text-xl font-extrabold tracking-tight text-slate-800 md:text-2xl"
+          className="text-xl font-extrabold tracking-tight md:text-2xl brand-logo"
           onClick={() => setMenuOpen(false)}
         >
           R-Mobiles
